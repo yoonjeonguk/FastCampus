@@ -9,14 +9,15 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.1'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.1'
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.7.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 repositories {
-//  mavenCentral()
-    maven {
-        url "http://<Nexus Private IP>:8081/repository/<nexus artifact repository Name>"
+  //mavenCentral()
+   maven {
+        url "http://3.34.25.41:8081/repository/test-docker-nexus-repository/"
         allowInsecureProtocol true
-    }
+   }
 
 }
 
@@ -43,8 +44,8 @@ jib {
         image = 'adoptopenjdk/openjdk11:alpine-jre'
     }
     to {
-        image = '<AWS ECR URL>/<Image Repository Name>'
-        tags = ['<Image Tag Name>']
+        image = '650403937171.dkr.ecr.ap-northeast-2.amazonaws.com/test'
+        tags = ['1.0']
     }
     container {
         entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'test-docker-spring-boot-0.0.1-SNAPSHOT.jar']
