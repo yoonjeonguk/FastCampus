@@ -33,6 +33,11 @@ jib {
     from {
         image = 'adoptopenjdk/openjdk11:alpine-jre'
     }
+    to {
+        image = 'ec2-3-34-25-41.ap-northeast-2.compute.amazonaws.com:5000/test'
+        tags = ['1.0']
+    }
+
     allowInsecureRegistries = true
     container {
         entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'test-docker-spring-boot-0.0.1-SNAPSHOT.jar']
